@@ -1,0 +1,478 @@
+/* Dense terminal table — Bloomberg style */
+.live-stocks-card {
+    padding: 0;
+    height: 100%;
+}
+
+.live-stocks-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding: 8px 12px;
+    border-bottom: 1px solid #333;
+    background: #080808;
+}
+
+.card-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--status-up);
+    padding: 2px 6px;
+    background: var(--status-up-bg);
+    border-radius: 2px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+}
+
+.live-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background-color: var(--status-up);
+    animation: pulse-dot 1.5s infinite;
+}
+
+@keyframes pulse-dot {
+    0% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.7);
+    }
+    70% {
+        transform: scale(1);
+        box-shadow: 0 0 0 4px rgba(0, 255, 65, 0);
+    }
+    100% {
+        transform: scale(0.95);
+        box-shadow: 0 0 0 0 rgba(0, 255, 65, 0);
+    }
+}
+
+/* List Header */
+.list-header {
+    display: grid;
+    grid-template-columns: 1fr auto auto 140px 36px;
+    align-items: center;
+    gap: 12px;
+    padding: 4px 12px;
+    border-bottom: 1px solid #444;
+    background: #080808;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.header-col {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.1s;
+}
+
+.header-col:hover {
+    color: var(--text-primary);
+}
+
+/* Stock List */
+.stocks-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.stock-row {
+    display: grid;
+    grid-template-columns: 1fr auto auto 140px 36px;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 12px;
+    border-radius: 0;
+    transition: background 0.1s ease;
+    position: relative;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.stock-row:last-child {
+    border-bottom: none;
+}
+
+.stock-row::after {
+    display: none;
+}
+
+.stock-row:nth-child(even) {
+    background: #060606;
+}
+
+.stock-row:hover {
+    background: #1a1a1a;
+}
+
+/* Stock Info */
+.stock-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.stock-avatar {
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.stock-avatar-img {
+    object-fit: contain;
+    background: #ffffff;
+    padding: 3px;
+    border: 1px solid #333;
+}
+
+.stock-avatar-text {
+    background: rgba(255, 153, 0, 0.12);
+    border: 1px solid rgba(255, 153, 0, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.6rem;
+    font-weight: 700;
+    color: #ff9900;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: var(--font-mono);
+}
+
+.stock-text {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    min-width: 0;
+}
+
+.stock-symbol {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    font-family: var(--font-mono);
+}
+
+.stock-name {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px;
+}
+
+/* Shares */
+.stock-shares-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    margin-right: 8px;
+}
+
+.stock-shares-count {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+.stock-shares-label {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* PNL Column */
+.stock-pnl-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 1px;
+    min-width: 80px;
+}
+
+.stock-pnl-value {
+    font-size: 0.8rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+}
+
+.stock-pnl-pct {
+    font-size: 0.68rem;
+    font-weight: 500;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    opacity: 0.8;
+}
+
+/* Price + Change */
+.stock-price-col {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 3px;
+}
+
+.stock-price {
+    font-weight: 600;
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    color: var(--text-primary);
+    padding: 1px 0;
+    transition: color 0.15s ease;
+    white-space: nowrap;
+}
+
+.stock-price.flash-up {
+    color: #00ff41;
+    text-shadow: 0 0 6px rgba(0, 255, 65, 0.3);
+}
+
+.stock-price.flash-down {
+    color: #ff3333;
+    text-shadow: 0 0 6px rgba(255, 51, 51, 0.3);
+}
+
+/* Badge for change % */
+.stock-change-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    padding: 1px 6px;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+    letter-spacing: 0.2px;
+}
+
+.stock-change-badge.badge-up {
+    color: #00ff41;
+    background: rgba(0, 255, 65, 0.1);
+}
+
+.stock-change-badge.badge-down {
+    color: #ff3333;
+    background: rgba(255, 51, 51, 0.1);
+}
+
+/* Delete Button */
+.delete-stock-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.1s ease;
+    flex-shrink: 0;
+}
+
+.stock-row:hover .delete-stock-btn {
+    opacity: 0.6;
+}
+
+.delete-stock-btn:hover {
+    opacity: 1 !important;
+    color: #ff3333;
+    background: rgba(255, 51, 51, 0.1);
+}
+
+/* Empty State */
+.empty-stocks {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    color: var(--text-muted);
+    font-size: 0.82rem;
+}
+
+/* Mobile */
+
+    .stocks-list {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 4px;
+    }
+
+    .stock-row,
+    .list-header {
+        min-width: 600px;
+    }
+
+    .live-stocks-card .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+}
+
+/* ── Mobile ── */
+
+
+/* Bloomberg Terminal — Desktop Dense Table */
+@media (min-width: 769px) {
+    .live-stocks-card {
+        border-radius: 0;
+        border: 1px solid #1a1a1a;
+        background: #080808;
+    }
+    .live-stocks-card .card-header {
+        padding: 6px 10px;
+        border-bottom: 1px solid #1a1a1a;
+        background: #0a0a0a;
+    }
+    .live-stocks-card .card-header h3 {
+        font-size: 0.72rem;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+    }
+    .list-header {
+        padding: 4px 10px;
+        font-size: 0.6rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #555;
+        border-bottom: 1px solid #1a1a1a;
+        background: #060606;
+    }
+    .stock-row {
+        padding: 5px 10px;
+        font-size: 0.75rem;
+        border-bottom: 1px solid #111;
+        transition: background 0.08s;
+    }
+    .stock-row:hover {
+        background: #111 !important;
+    }
+    .stock-row .stock-ticker {
+        font-size: 0.78rem;
+        font-weight: 700;
+        font-family: var(--font-mono);
+        letter-spacing: 0.3px;
+    }
+    .stock-row .stock-name {
+        font-size: 0.62rem;
+        color: #444;
+    }
+    .stock-row .stock-price,
+    .stock-row .stock-change,
+    .stock-row .stock-value,
+    .stock-row .stock-shares {
+        font-family: var(--font-mono);
+        font-size: 0.75rem;
+    }
+}
+
+/* ═══ LiveStockList Mobile ═══ */
+@media (max-width: 768px) {
+    .live-stocks-card {
+        border: none !important;
+        background: transparent !important;
+    }
+    .card-header {
+        padding: 12px 16px 8px !important;
+    }
+    .card-header h3 {
+        font-size: 0.85rem;
+    }
+    .list-header {
+        display: none !important;
+    }
+    .stock-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        padding: 0 4px;
+    }
+    .stock-row {
+        display: flex !important;
+        align-items: center;
+        padding: 14px 12px !important;
+        gap: 12px;
+        border: none !important;
+        border-radius: 0 !important;
+        background: transparent !important;
+        border-bottom: 1px solid #1a1a1a !important;
+        position: relative;
+    }
+    .stock-row:last-child {
+        border-bottom: none !important;
+    }
+    /* Left: ticker + name */
+    .stock-row .stock-ticker {
+        font-size: 0.88rem !important;
+        font-weight: 700 !important;
+        min-width: 55px;
+        color: var(--text-primary);
+    }
+    .stock-row .stock-name {
+        display: none !important;
+    }
+    /* Right: price + change */
+    .stock-row .stock-price {
+        font-size: 0.88rem !important;
+        font-weight: 600 !important;
+        margin-left: auto;
+        text-align: right;
+        font-family: var(--font-mono);
+    }
+    .stock-row .stock-change {
+        font-size: 0.75rem !important;
+        min-width: 65px;
+        text-align: right;
+        font-family: var(--font-mono);
+    }
+    /* Hide less relevant columns */
+    .stock-row .stock-value,
+    .stock-row .stock-shares,
+    .stock-row .stock-allocation {
+        display: none !important;
+    }
+    .stock-row .delete-btn {
+        display: none !important;
+    }
+    /* Light theme */
+    :root[data-theme="light"] .stock-row {
+        border-bottom-color: #e8e8e8 !important;
+    }
+}

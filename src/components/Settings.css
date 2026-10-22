@@ -1,0 +1,413 @@
+.settings-page {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.settings-header {
+    margin-bottom: 24px;
+}
+
+.settings-header h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.settings-subtitle {
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+/* ─── Grid Layout ─── */
+.settings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+/* ─── Section Card ─── */
+.settings-section {
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border: 1px solid #333;
+}
+
+.settings-section-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #333;
+    color: var(--text-primary);
+}
+
+.settings-section-header h3 {
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+/* ─── Setting Row ─── */
+.setting-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-bottom: 1px solid #1a1a1a;
+}
+
+.setting-row:last-of-type {
+    border-bottom: none;
+}
+
+.setting-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-secondary);
+    flex: 1;
+    min-width: 0;
+}
+
+.setting-info>svg {
+    flex-shrink: 0;
+    opacity: 0.6;
+}
+
+.setting-info>div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.setting-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--text-primary);
+}
+
+.setting-desc {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+}
+
+/* ─── Toggle Switch ─── */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 44px;
+    height: 24px;
+    flex-shrink: 0;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: #1a1a1a;
+    border-radius: 24px;
+    transition: 0.1s ease;
+}
+
+.toggle-slider::before {
+    content: '';
+    position: absolute;
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background: white;
+    border-radius: 50%;
+    transition: 0.1s ease;
+}
+
+input:checked+.toggle-slider {
+    background: #ff9900;
+}
+
+input:checked+.toggle-slider::before {
+    transform: translateX(20px);
+}
+
+/* ─── Segmented Control ─── */
+.setting-segmented {
+    display: flex;
+    background: #0a0a0a;
+    border-radius: 2px;
+    padding: 2px;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.setting-segmented button {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    padding: 4px 8px;
+    border-radius: 2px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    white-space: nowrap;
+}
+
+.setting-segmented button.seg-active {
+    background: #ff9900;
+    color: #000;
+}
+
+.setting-segmented button:hover:not(.seg-active) {
+    background: #1a1a1a;
+    color: var(--text-primary);
+}
+
+/* ─── Currency Pill Toggle ─── */
+.setting-toggle-pill {
+    display: flex;
+    background: #0a0a0a;
+    border-radius: 2px;
+    padding: 2px;
+    gap: 2px;
+    border: none;
+    cursor: pointer;
+    flex-shrink: 0;
+}
+
+.setting-toggle-pill span {
+    padding: 4px 10px;
+    border-radius: 2px;
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: all 0.1s ease;
+}
+
+.setting-toggle-pill span.pill-active {
+    background: #ff9900;
+    color: #000;
+}
+
+/* ─── Value Display ─── */
+.setting-value-display {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ff9900;
+    padding: 3px 10px;
+    background: #141414;
+    border-radius: 2px;
+    white-space: nowrap;
+    font-family: var(--font-mono);
+}
+
+/* ─── Action Buttons ─── */
+.setting-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #333;
+}
+
+.setting-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border: 1px solid #333;
+    border-radius: 2px;
+    background: #111;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.setting-action-btn:hover {
+    background: #1a1a1a;
+    border-color: #444;
+}
+
+.import-action:hover {
+    border-color: #ff9900;
+    color: #ff9900;
+}
+
+.export-action:hover {
+    border-color: #00ff41;
+    color: #00ff41;
+}
+
+/* ─── Danger Zone ─── */
+.danger-section {
+    border-color: #331111 !important;
+}
+
+.danger-section .settings-section-header {
+    color: #ff3333;
+    border-bottom-color: #331111;
+}
+
+.danger-desc {
+    font-size: 0.82rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    line-height: 1.5;
+}
+
+.danger-btn {
+    border-color: #331111 !important;
+    color: #ff3333 !important;
+}
+
+.danger-btn:hover {
+    background: #1a0a0a !important;
+    border-color: #ff3333 !important;
+}
+
+.danger-confirm {
+    background: #1a0a0a;
+    border: 1px solid #331111;
+    border-radius: 2px;
+    padding: 12px;
+}
+
+.danger-confirm p {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 10px;
+}
+
+.danger-confirm-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.danger-confirm-btn {
+    padding: 6px 14px;
+    background: #ff3333;
+    color: white;
+    border: none;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.danger-confirm-btn:hover {
+    background: #cc2929;
+}
+
+.danger-cancel-btn {
+    padding: 6px 14px;
+    background: #111;
+    color: var(--text-secondary);
+    border: 1px solid #333;
+    border-radius: 2px;
+    font-size: 0.82rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.1s ease;
+}
+
+.danger-cancel-btn:hover {
+    background: #1a1a1a;
+}
+
+/* ─── About Footer ─── */
+.settings-about {
+    padding: 14px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    border: 1px solid #333;
+}
+
+.about-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.about-name {
+    font-weight: 700;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.about-version {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    padding: 2px 8px;
+    background: #141414;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+}
+
+.about-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* ─── Responsive ─── */
+
+
+
+/* Bloomberg Terminal — Desktop */
+@media (min-width: 769px) {
+    .settings-panel,
+    .settings-card,
+    .insight-card,
+    .settings-panel,
+    .settings-card,
+    .ai-chat-panel,
+    .dividend-panel,
+    .bt-form-panel,
+    .bt-chart-panel,
+    .wl-toolbar,
+    .wl-table-wrap,
+    .scr-toolbar,
+    .scr-table-wrap,
+    .cm-panel {
+        border-radius: 0 !important;
+    }
+}
+
+/* ═══ Settings Mobile ═══ */
+@media (max-width: 768px) {
+    .settings-panel {
+        padding: 12px !important;
+    }
+    .settings-grid {
+        grid-template-columns: 1fr !important;
+        gap: 12px;
+    }
+    .settings-card {
+        padding: 16px !important;
+    }
+    .settings-card h3 {
+        font-size: 0.9rem;
+    }
+}

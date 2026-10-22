@@ -1,0 +1,602 @@
+.portfolio-analysis {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+/* Header Row */
+.pa-header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: #111;
+    border: 1px solid #333;
+}
+
+.pa-page-title {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+    margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+.pa-header-row .btn-secondary {
+    gap: 6px;
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+/* Empty State */
+.empty-portfolio-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 48px 20px;
+    gap: 10px;
+    color: var(--text-muted);
+}
+
+.empty-portfolio-msg h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.empty-portfolio-msg p {
+    max-width: 320px;
+    line-height: 1.5;
+}
+
+/* Stats Row */
+.pa-stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+}
+
+.pa-stat-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px;
+    background: #111;
+    border: 1px solid #333;
+}
+
+.pa-stat-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.pa-stat-label {
+    display: block;
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.pa-stat-value {
+    display: block;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+}
+
+/* Main Grid */
+.pa-main-grid {
+    display: grid;
+    grid-template-columns: 340px 1fr;
+    gap: 1px;
+}
+
+/* Allocation Panel */
+.pa-allocation {
+    padding: 16px;
+    background: #111;
+    border: 1px solid #333;
+}
+
+.pa-section-title {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.pa-pie-wrapper {
+    display: flex;
+    justify-content: center;
+}
+
+.pa-legend {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: 14px;
+}
+
+.pa-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.8rem;
+}
+
+.pa-legend-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.pa-legend-label {
+    color: var(--text-primary);
+    font-weight: 500;
+    flex: 1;
+}
+
+.pa-legend-pct {
+    color: var(--text-secondary);
+    font-weight: 600;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+/* Pie Tooltip */
+.pie-tooltip {
+    padding: 8px 12px;
+    background: #141414;
+    border: 1px solid #444;
+    border-radius: 2px;
+}
+
+.pie-tooltip-name {
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+}
+
+.pie-tooltip-value {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+}
+
+.pie-tooltip-pct {
+    font-size: 0.8rem;
+    color: #ff9900;
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+/* Positions Panel */
+.pa-positions {
+    padding: 16px;
+    overflow: hidden;
+    background: #111;
+    border: 1px solid #333;
+}
+
+.pa-table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 4px;
+}
+
+.pa-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.pa-table thead th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+    white-space: nowrap;
+}
+
+.sortable-th {
+    cursor: pointer;
+    user-select: none;
+    transition: color 0.1s ease;
+}
+
+.sortable-th:hover {
+    color: #ff9900;
+}
+
+.pa-sort-icon {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 4px;
+}
+
+.pa-table tbody tr {
+    transition: background 0.1s ease;
+}
+
+.pa-table tbody tr:nth-child(even) {
+    background: #0a0a0a;
+}
+
+.pa-table tbody tr:hover {
+    background: #1a1a1a;
+}
+
+.pa-table tbody td {
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    border-bottom: 1px solid #1a1a1a;
+    white-space: nowrap;
+}
+
+.pa-asset-cell {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.pa-asset-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.pa-asset-symbol {
+    display: block;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    font-family: var(--font-mono);
+}
+
+.pa-asset-name {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pa-pnl-pct {
+    font-size: 0.7rem;
+    opacity: 0.8;
+    font-family: var(--font-mono);
+}
+
+.pa-value-cell {
+    font-weight: 600;
+    color: var(--text-primary) !important;
+    font-family: var(--font-mono);
+}
+
+.pa-date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    background: #1a1a1a;
+    border-radius: 2px;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+}
+
+/* Target Column */
+.pa-target-cell {
+    position: relative;
+}
+
+.pa-target-display {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 1px 2px;
+    border-radius: 2px;
+    transition: background 0.15s ease;
+}
+
+.pa-target-display:hover {
+    background: rgba(255, 153, 0, 0.08);
+}
+
+.pa-target-placeholder {
+    color: var(--text-muted);
+    opacity: 0.5;
+    font-size: 0.72rem;
+    font-style: italic;
+    border-bottom: 1px dashed #444;
+}
+
+.pa-target-input {
+    width: 80px;
+    background: #0a0a0a;
+    border: 1px solid #ff9900;
+    color: var(--text-primary);
+    padding: 3px 6px;
+    border-radius: 2px;
+    font-size: 0.78rem;
+    font-family: var(--font-mono);
+    outline: none;
+}
+
+.pa-target-badge {
+    display: inline-block;
+    font-size: 0.65rem;
+    font-weight: 600;
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+}
+
+.pa-target-badge.badge-up {
+    color: #00ff41;
+    background: rgba(0, 255, 65, 0.08);
+}
+
+.pa-target-badge.badge-down {
+    color: #ff3333;
+    background: rgba(255, 51, 51, 0.08);
+}
+
+.text-up {
+    color: #00ff41 !important;
+}
+
+.text-down {
+    color: #ff3333 !important;
+}
+
+/* Responsive */
+
+
+/* Bloomberg Terminal — Desktop Dense Tables */
+@media (min-width: 769px) {
+    .pa-section-title {
+        font-size: 0.72rem;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        color: #888;
+        margin-bottom: 8px;
+    }
+    .pa-stat-card {
+        border-radius: 0;
+        padding: 10px;
+    }
+    .pa-stat-label {
+        font-size: 0.6rem;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .pa-stat-value {
+        font-size: 0.82rem;
+        font-family: var(--font-mono);
+    }
+    .pa-allocation {
+        border-radius: 0;
+    }
+    .pa-positions {
+        border-radius: 0;
+    }
+    .pa-table thead th {
+        padding: 5px 8px;
+        font-size: 0.62rem;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #555;
+        background: #060606;
+        border-bottom: 1px solid #1a1a1a;
+        font-family: var(--font-mono);
+    }
+    .pa-table tbody td {
+        padding: 5px 8px;
+        font-size: 0.75rem;
+        font-family: var(--font-mono);
+        border-bottom: 1px solid #111;
+    }
+    .pa-table tbody tr:hover {
+        background: #0d0d0d !important;
+    }
+    .pa-asset-symbol {
+        font-weight: 700;
+        font-size: 0.78rem;
+    }
+    .pa-asset-name {
+        font-size: 0.6rem;
+        color: #444;
+    }
+    .pa-pnl-pct {
+        font-size: 0.62rem;
+        color: #666;
+    }
+    .pa-legend-item {
+        font-size: 0.68rem;
+        font-family: var(--font-mono);
+    }
+    .pa-page-title {
+        font-size: 0.85rem;
+        font-family: var(--font-mono);
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #888;
+    }
+}
+
+/* ═══ PortfolioAnalysis Mobile ═══ */
+@media (max-width: 768px) {
+    .portfolio-analysis {
+        padding: 0 !important;
+    }
+    .pa-header-row {
+        padding: 12px 16px;
+        flex-direction: row !important;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .pa-page-title {
+        font-size: 1rem;
+    }
+
+    /* Stats: 2x2 grid, compact */
+    .pa-stats-row {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 8px !important;
+        padding: 0 12px 12px;
+    }
+    .pa-stat-card {
+        padding: 12px !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 6px !important;
+    }
+    .pa-stat-icon {
+        width: 32px !important;
+        height: 32px !important;
+    }
+    .pa-stat-label {
+        font-size: 0.62rem !important;
+    }
+    .pa-stat-value {
+        font-size: 0.78rem !important;
+    }
+
+    /* Main grid: stack vertically */
+    .pa-main-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 12px;
+        padding: 0 12px;
+    }
+
+    /* Pie chart compact */
+    .pa-allocation {
+        padding: 16px !important;
+    }
+    .pa-pie-wrapper .recharts-responsive-container {
+        height: 200px !important;
+    }
+    .pa-legend {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 4px 12px;
+    }
+    .pa-legend-item {
+        font-size: 0.72rem;
+    }
+
+    /* Positions: mobile card layout */
+    .pa-positions {
+        padding: 12px !important;
+    }
+    .pa-table-wrapper {
+        overflow-x: hidden !important;
+    }
+    .pa-table {
+        min-width: 0 !important;
+    }
+    .pa-table thead {
+        display: none !important;
+    }
+    .pa-table tbody {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+    .pa-table tbody tr {
+        display: flex;
+        flex-wrap: wrap;
+        padding: 14px;
+        background: #0a0a0a;
+        border: 1px solid #1a1a1a;
+        border-radius: 12px;
+        gap: 4px 16px;
+        align-items: center;
+    }
+    /* Asset cell — full width top */
+    .pa-table tbody td:nth-child(1) {
+        width: 100%;
+        padding: 0 0 8px !important;
+        border-bottom: 1px solid #1a1a1a;
+        margin-bottom: 4px;
+    }
+    .pa-asset-cell {
+        gap: 10px !important;
+    }
+    .pa-asset-symbol {
+        font-size: 0.95rem !important;
+        font-weight: 700 !important;
+    }
+    .pa-asset-name {
+        font-size: 0.7rem !important;
+    }
+
+    /* Key metrics in 2 columns */
+    .pa-table tbody td {
+        padding: 2px 0 !important;
+        font-size: 0.78rem;
+        border: none !important;
+    }
+    .pa-table tbody td:nth-child(2),
+    .pa-table tbody td:nth-child(6) {
+        width: calc(50% - 8px);
+    }
+    .pa-table tbody td:nth-child(3),
+    .pa-table tbody td:nth-child(7) {
+        width: calc(50% - 8px);
+    }
+    .pa-table tbody td:nth-child(4),
+    .pa-table tbody td:nth-child(8) {
+        width: calc(50% - 8px);
+    }
+    /* Hide less critical cols: Target, Purchased */
+    .pa-table tbody td:nth-child(5),
+    .pa-table tbody td:nth-child(9) {
+        display: none !important;
+    }
+    .pa-pnl-pct {
+        font-size: 0.68rem !important;
+    }
+
+    /* Light theme card */
+    :root[data-theme="light"] .pa-table tbody tr {
+        background: #fff;
+        border-color: #e0e0e0;
+    }
+    :root[data-theme="light"] .pa-table tbody td:nth-child(1) {
+        border-bottom-color: #e8e8e8;
+    }
+}

@@ -1,0 +1,325 @@
+/* ─── Dividend Calendar Styles ─── */
+.dividend-calendar {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    height: 100%;
+}
+
+.empty-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    text-align: center;
+    gap: 10px;
+    color: var(--text-muted);
+}
+
+.empty-message h3 {
+    color: var(--text-primary);
+    font-size: 1.1rem;
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ─── Hero Metrics Banner ─── */
+.dividend-hero {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    background: #111;
+    border: 1px solid #333;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.hero-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 2px;
+    background: rgba(255, 153, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.hero-content {
+    flex: 1;
+    min-width: 250px;
+}
+
+.hero-label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 2px;
+}
+
+.hero-value {
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+    color: #ff9900 !important;
+    font-family: var(--font-mono);
+}
+
+.hero-stats {
+    display: flex;
+    gap: 24px;
+    padding-left: 24px;
+    border-left: 1px solid #333;
+}
+
+.stat-block {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.stat-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-val {
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    font-family: var(--font-mono);
+}
+
+/* ─── Dividend Table ─── */
+.div-table-container {
+    padding: 16px;
+    background: #111;
+    border: 1px solid #333;
+}
+
+.div-table-container .section-title {
+    margin: 0 0 12px 0;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #333;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.div-table-wrapper {
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+}
+
+.div-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.8rem;
+}
+
+.div-table thead th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid #333;
+    white-space: nowrap;
+}
+
+.div-table tbody tr {
+    transition: background 0.1s ease;
+}
+
+.div-table tbody tr:nth-child(even) {
+    background: #0a0a0a;
+}
+
+.div-table tbody tr:hover {
+    background: #1a1a1a;
+}
+
+.div-table tbody td {
+    padding: 8px 12px;
+    color: var(--text-secondary);
+    font-family: var(--font-mono);
+    font-variant-numeric: tabular-nums;
+    border-bottom: 1px solid #1a1a1a;
+    white-space: nowrap;
+}
+
+/* Row highlights */
+.row-upcoming td {
+    opacity: 1;
+}
+
+.row-past td {
+    opacity: 0.6;
+}
+
+.div-asset {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.asset-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 2px;
+    background: #1a1a1a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.7rem;
+    color: var(--text-primary);
+    overflow: hidden;
+}
+
+.asset-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #ffffff;
+    padding: 3px;
+}
+
+.date-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-weight: 500;
+    font-family: var(--font-mono);
+}
+
+.badge-future {
+    background: rgba(255, 153, 0, 0.15);
+    color: #ff9900;
+}
+
+.badge-past {
+    background: #1a1a1a;
+    color: var(--text-muted);
+}
+
+/* ─── Custom Tooltip ─── */
+.tooltip-container {
+    position: relative;
+    cursor: help;
+}
+
+.info-icon {
+    opacity: 0.5;
+    transition: opacity 0.1s ease, color 0.1s ease;
+}
+
+.tooltip-container:hover .info-icon {
+    opacity: 1;
+    color: #ff9900;
+}
+
+.custom-tooltip {
+    position: absolute;
+    top: calc(100% + 12px);
+    bottom: auto;
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+    background: #141414;
+    border: 1px solid #444;
+    padding: 8px 10px;
+    border-radius: 2px;
+    width: 220px;
+    color: var(--text-secondary);
+    font-size: 0.72rem;
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: normal;
+    white-space: normal;
+    pointer-events: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.1s ease;
+    z-index: 100;
+}
+
+.custom-tooltip::after {
+    content: '';
+    position: absolute;
+    bottom: 100%;
+    top: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    border-width: 6px;
+    border-style: solid;
+    border-color: transparent transparent #444 transparent;
+}
+
+.tooltip-container:hover .custom-tooltip {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(0);
+}
+
+.custom-tooltip strong {
+    display: block;
+    color: var(--text-primary);
+    margin-bottom: 2px;
+    font-size: 0.75rem;
+}
+
+.custom-tooltip p {
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* ─── Mobile Responsiveness ─── */
+
+
+
+/* Bloomberg Terminal — Desktop */
+@media (min-width: 769px) {
+    .dividendcalendar-panel,
+    .dividendcalendar-card,
+    .insight-card,
+    .settings-panel,
+    .settings-card,
+    .ai-chat-panel,
+    .dividend-panel,
+    .bt-form-panel,
+    .bt-chart-panel,
+    .wl-toolbar,
+    .wl-table-wrap,
+    .scr-toolbar,
+    .scr-table-wrap,
+    .cm-panel {
+        border-radius: 0 !important;
+    }
+}
+
+/* ═══ DividendCalendar Mobile ═══ */
+@media (max-width: 768px) {
+    .dividend-panel {
+        padding: 12px !important;
+    }
+    .dividend-grid {
+        grid-template-columns: 1fr !important;
+    }
+    .dividend-month {
+        padding: 12px !important;
+    }
+}

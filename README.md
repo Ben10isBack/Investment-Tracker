@@ -1,0 +1,325 @@
+<div align="center">
+
+# INVESTMENT TRACKER
+
+**Terminal-grade portfolio intelligence for the modern investor**
+
+<img src="docs/screenshots/login-page.png" alt="Investment Tracker — Login" width="820">
+<br><br>
+<img src="docs/screenshots/dashboard.png" alt="Investment Tracker — Dashboard" width="820">
+<br><br>
+<img src="docs/screenshots/chart.png" alt="Investment Tracker — Stock Charts" width="820">
+<br><br>
+<img src="docs/screenshots/dividends.png" alt="Investment Tracker — Dividends Calendar" width="820">
+
+[![React](https://img.shields.io/badge/React-19.2-61DAFB?style=flat-square&logo=react&logoColor=white)](https://react.dev)
+[![Vite](https://img.shields.io/badge/Vite-7.3-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
+[![Express](https://img.shields.io/badge/Express-5.2-000000?style=flat-square&logo=express&logoColor=white)](https://expressjs.com)
+[![Yahoo Finance](https://img.shields.io/badge/Yahoo_Finance-API-7B0099?style=flat-square)](https://finance.yahoo.com)
+[![License](https://img.shields.io/badge/License-MIT-ff9900?style=flat-square)]()
+[![Developer](https://img.shields.io/badge/Developer-Shourya%20Vaidhya%20Jain-ff9900?style=flat-square)](mailto:parvx18@gmail.com)
+[![Country](https://img.shields.io/badge/Country-India-138808?style=flat-square)]()
+[![Contact](https://img.shields.io/badge/Contact-parvx18%40gmail.com-blue?style=flat-square)](mailto:parvx18@gmail.com)
+
+</div>
+
+---
+
+## Overview
+
+**Investment Tracker** is a full-featured stock portfolio dashboard inspired by Bloomberg Terminal aesthetics. It combines real-time market data, portfolio analytics, AI-powered insights, and a clean dark interface built for speed and clarity.
+
+> **Design philosophy:** JetBrains Mono typography, amber accent `#ff9900`, pitch-black `#000` background, 2px radius everywhere, and zero clutter.
+
+---
+
+## Features
+
+### Core
+| Feature | Description |
+|---------|-------------|
+| **Live Portfolio Tracking** | Real-time quotes every 5s via Yahoo Finance. Price flash animations on tick. |
+| **Multi-Portfolio** | Create, switch, rename, and delete portfolios (PEA, CTO, Crypto...). Dropdown selector in topbar. |
+| **Performance Chart** | Interactive area chart with 1D / 1W / 1M / 3M / 1Y / ALL timeframes. Tooltip with balance on hover. |
+| **Portfolio Heatmap** | Treemap visualization sized by market value, colored by daily performance (-5% red to +5% green). |
+| **Summary Cards** | Total balance, invested, today's P&L, total P&L, ATH, ATL with percentage badges. |
+| **Currency Toggle** | Switch display between EUR and USD. FX rate auto-fetched. All metrics normalized internally. |
+| **Hide Balances** | One-click privacy mode to mask all monetary values. |
+| **Dark / Light Mode** | Full theme support with seamless transitions. Persisted in settings. |
+
+### Multi-User & Security
+| Feature | Description |
+|---------|-------------|
+| **User Authentication** | Secure registration & login with bcrypt (12 rounds) + JWT (7-day expiry). |
+| **SQLite Database** | All user data stored in SQLite (WAL mode) via better-sqlite3. No plain JSON files. |
+| **Per-User Isolation** | Each user's portfolios, API keys, avatars, and settings are fully isolated. |
+| **Admin Panel** | First registered user is admin. Manage users, promote/demote roles, view stats. |
+| **Rate Limiting** | Global API rate limiting, AI-specific limits, upload limits. |
+| **Path Traversal Protection** | All user-supplied IDs sanitized + resolved path validated against base directory. |
+| **Demo Account** | Read-only `demo/demo` account with pre-loaded portfolio for safe exploration. |
+| **Onboarding Tutorial** | Interactive 6-step walkthrough for new accounts with zero positions. |
+| **Profile Avatars** | Upload a profile photo (2MB max, MIME validated). Displayed in topbar with dropdown menu. |
+
+### Market Intelligence
+| Feature | Description |
+|---------|-------------|
+| **Stock Charts** | Per-ticker historical chart with range selector (1D to 5Y). Powered by Yahoo Finance `chart()`. |
+| **Ticker Comparator** | Overlay two tickers on the same chart, normalized to % change for direct comparison. |
+| **Watchlist** | Track tickers without owning them. Add/remove, live quotes, 52-week range. |
+| **Stock Screener** | Pre-built screens: Top Gainers, Top Losers, Most Active, Trending, Undervalued Large Caps, Growth Tech. |
+| **News Feed** | Per-ticker news with source, timestamp, and external links. |
+| **Correlation Matrix** | Return correlation heatmap with period selector, diversification score, and per-stock volatility. |
+
+### Analytics & Tools
+| Feature | Description |
+|---------|-------------|
+| **Portfolio Analysis** | Detailed position table with shares, avg price, current price, P&L, weight, target price. |
+| **Target Prices** | Set per-position price targets. Inline edit with distance-to-target badge. |
+| **Price Alerts** | Configure high/low thresholds per ticker. Real-time notifications when breached. |
+| **Backtesting** | "What if I invested X in Y on date Z?" Historical simulation with CAGR and max drawdown. |
+| **Dividend Calendar** | Timeline of upcoming and past dividend payouts with annual income estimate. |
+| **Transaction History** | Automatic BUY/SELL logging. Filterable by ticker, type, date range. |
+| **CSV Export** | Native export of portfolio data. Available in Settings and Portfolio. |
+| **Insights** | Sector breakdown, top performers, risk metrics, analyst recommendations. |
+
+### AI Assistant
+| Feature | Description |
+|---------|-------------|
+| **Portfolio AI Advisor** | Chat-based financial advisor powered by OpenAI GPT-4o or Anthropic Claude Sonnet. |
+| **Dual Provider** | Choose between OpenAI and Claude — connect with your own API key. |
+| **Context-Aware** | Sends your current holdings, sector weights, and performance data as context to each query. |
+| **Per-User Keys** | API keys stored server-side, isolated per user account. |
+
+---
+
+## Architecture
+
+```
+investment-tracker/
+  ├── src/
+  │   ├── components/          # 21 React components + CSS modules
+  │   │   ├── DashboardLayout  # Shell: sidebar, topbar, portfolio selector
+  │   │   ├── LoginPage        # Login / Register UI
+  │   │   ├── AdminPanel       # User management (admin only)
+  │   │   ├── PortfolioSummary # Summary cards (balance, PNL, ATH/ATL)
+  │   │   ├── PerformanceChart # Recharts area chart with timeframes
+  │   │   ├── LiveStockList    # Real-time positions table
+  │   │   ├── Heatmap          # Treemap portfolio visualization
+  │   │   ├── StockChart       # Per-ticker chart + comparator + news
+  │   │   ├── Watchlist        # Non-portfolio ticker tracking
+  │   │   ├── Screener         # Yahoo Finance screener presets
+  │   │   ├── Backtesting      # Historical "what if" simulator
+  │   │   ├── PortfolioAnalysis# Position details + targets + CSV
+  │   │   ├── TransactionHistory# Buy/sell log
+  │   │   ├── CorrelationMatrix# Return correlation heatmap
+  │   │   ├── DividendCalendar # Payout timeline
+  │   │   ├── Insights         # Sector/risk analytics
+  │   │   ├── NewsFeed         # Per-ticker news
+  │   │   ├── PriceAlerts      # Alert configuration
+  │   │   ├── AIAssistant      # OpenAI / Claude chat interface
+  │   │   ├── Settings         # App configuration + export
+  │   │   └── ...modals        # AddStock, Import
+  │   ├── contexts/
+  │   │   ├── AuthContext       # JWT auth state management
+  │   │   ├── CurrencyContext   # EUR/USD, theme, hide balances
+  │   │   └── NotificationContext # Per-user notifications
+  │   ├── services/
+  │   │   ├── fetchAuth.js      # Authenticated fetch wrapper
+  │   │   ├── mockData.js       # Portfolio CRUD, metrics, subscriptions
+  │   │   └── exportService.js  # Native CSV generation
+  │   ├── App.jsx               # Auth gate + Dashboard routing
+  │   └── index.css             # Global styles + theme tokens
+  ├── server.js                 # Express 5 API + auth + AI proxy
+  ├── auth.js                   # SQLite auth module (bcrypt + JWT)
+  ├── auth/investment_tracker.db# SQLite database (users, login_attempts)
+  ├── data/{userId}/            # Per-user data directories
+  │   ├── portfolios/           # Portfolio JSON files
+  │   ├── ai_key.json           # Encrypted AI provider key
+  │   └── avatar.*              # Profile photo
+  └── package.json
+```
+
+---
+
+## API Reference
+
+### Authentication
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/auth/register` | Register `{ username, password }` |
+| `POST` | `/api/auth/login` | Login `{ username, password }` → JWT |
+| `GET` | `/api/auth/me` | Verify token, get user info |
+
+### Admin
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/admin/users` | List all users (admin only) |
+| `PUT` | `/api/admin/users/:id/role` | Change user role |
+| `DELETE` | `/api/admin/users/:id` | Delete user |
+| `GET` | `/api/admin/stats` | Platform statistics |
+
+### Portfolio
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/portfolios` | List all portfolios |
+| `POST` | `/api/portfolios` | Create portfolio `{ name }` |
+| `PUT` | `/api/portfolios/:id` | Rename portfolio `{ name }` |
+| `DELETE` | `/api/portfolios/:id` | Delete portfolio |
+| `GET` | `/api/portfolio?id=` | Load portfolio positions |
+| `POST` | `/api/portfolio?id=` | Save portfolio positions |
+
+### Market Data
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/quotes?symbols=` | Batch quotes (comma-separated) |
+| `GET` | `/api/historical/:symbol?range=` | OHLCV history (1d to 10y) |
+| `GET` | `/api/summary/:symbol` | Full quote summary |
+| `GET` | `/api/search?q=` | Ticker search / autocomplete |
+| `GET` | `/api/dividends?symbols=` | Dividend data |
+| `GET` | `/api/fx` | EUR/USD exchange rate |
+| `GET` | `/api/news/:symbol` | Latest news articles |
+
+### Discovery
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `GET` | `/api/screener?preset=` | Stock screener (gainers, losers, trending...) |
+| `GET` | `/api/trending` | Trending tickers |
+| `GET` | `/api/gainers` | Daily top gainers |
+| `GET` | `/api/losers` | Daily top losers |
+| `GET` | `/api/recommendations/:symbol` | Analyst recommendations |
+
+### AI Assistant
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/ai/chat` | Send message with portfolio context |
+| `POST` | `/api/ai/key` | Store API key `{ key, provider }` |
+| `GET` | `/api/ai/key` | Check key status + provider |
+| `POST` | `/api/ai/logout` | Remove stored API key |
+
+### User Profile
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| `POST` | `/api/avatar` | Upload profile photo (multipart) |
+| `GET` | `/api/avatar/:userId` | Get user avatar |
+
+---
+
+## Quick Start
+
+### Prerequisites
+- **Node.js** 18+
+- **npm** 9+
+
+### Setup & Launch
+
+```bash
+# Clone the repository
+git clone https://github.com/shourya-jain/investment-tracker.git
+cd investment-tracker
+
+# Install dependencies
+npm install
+
+# Start backend (port 3001)
+node server.js
+
+# Start frontend (port 5173)
+npm run dev
+```
+
+Or on Windows, simply double-click **`start.bat`** to launch both services simultaneously.
+
+Open **http://localhost:5173** in your browser.
+
+### First User = Admin
+
+The first account registered automatically receives the **admin** role with full access to the Admin Panel for platform and user management.
+
+### Adding Positions
+
+1. Click **"Add Position"** or type a ticker in the top search bar and press Enter.
+2. Search for any stock or ETF (e.g. `AAPL`, `MSFT`, `NVDA`, `TTE.PA`).
+3. Enter your shares, average purchase price, and date.
+4. The position immediately appears in your dashboard with live pricing and metrics.
+
+### Import from CSV
+
+Click **"Import"** to upload transaction CSV exports from brokers such as Revolut. The parser automatically detects formats and imports all holdings.
+
+---
+
+## Tech Stack
+
+| Layer | Technology | Version |
+|-------|-----------|---------|
+| **UI Framework** | React | 19.2 |
+| **Build Tool** | Vite | 7.3 |
+| **Charts** | Recharts | 3.7 |
+| **Icons** | Lucide React | 0.577 |
+| **Server** | Express | 5.2 |
+| **Market Data** | yahoo-finance2 | 3.13 |
+| **AI** | OpenAI GPT-4o / Claude Sonnet | Multi-provider |
+| **Auth** | bcryptjs + jsonwebtoken | JWT |
+| **Database** | better-sqlite3 | WAL mode |
+| **Notifications** | react-hot-toast | 2.6 |
+| **Styling** | Vanilla CSS | Custom properties + themes |
+
+---
+
+## Navigation
+
+| Tab | Icon | Description |
+|-----|------|-------------|
+| Dashboard | `Home` | Portfolio overview, chart, live list, heatmap |
+| Markets | `Activity` | Full live stock table |
+| Charts | `LineChart` | Per-ticker charts with comparator |
+| Watchlist | `Eye` | Non-portfolio ticker tracking |
+| Screener | `ListFilter` | Pre-built stock screens |
+| Portfolio | `PieChart` | Position analysis + transactions |
+| Backtest | `History` | Historical investment simulator |
+| Dividends | `Calendar` | Payout calendar + income estimate |
+| Insights | `Info` | Sector analytics + correlation matrix |
+| AI Assistant | `Sparkles` | AI-powered portfolio advisor |
+| Admin | `Shield` | User management (admin only) |
+| Settings | `Settings` | Config, export, alerts, theme |
+
+---
+
+## Data Storage
+
+| Data | Location | Persistence |
+|------|----------|-------------|
+| User accounts | `auth/investment_tracker.db` (SQLite) | Server |
+| Portfolio positions | `data/{userId}/portfolios/*.json` | Server |
+| Portfolio metadata | `data/{userId}/portfolios/_meta.json` | Server |
+| AI API keys | `data/{userId}/ai_key.json` | Server |
+| Profile avatars | `data/{userId}/avatar.*` | Server |
+| Watchlist | `localStorage:invest_tracker_watchlist` | Client |
+| Price alerts | `localStorage:invest_tracker_alerts` | Client |
+| Target prices | `localStorage:invest_tracker_targets` | Client |
+| Transactions | `localStorage:invest_tracker_transactions` | Client |
+| Theme preference | `localStorage:invest_tracker_theme` | Client |
+| Active portfolio | `localStorage:invest_tracker_active_portfolio` | Client |
+| Currency preference | `localStorage:invest_tracker_currency` | Client |
+| Notifications | `localStorage:invest_tracker_notifications_{userId}` | Client (per-user) |
+
+---
+
+## 👨‍💻 Developer & Contact
+
+**Investment Tracker** is created and maintained by:
+
+- **Developer:** **Shourya Vaidhya Jain**
+- **Location:** 🇮🇳 **India**
+- **Email / Support:** [parvx18@gmail.com](mailto:parvx18@gmail.com)
+
+If you have questions, feedback, or inquiries, please feel free to reach out directly via email.
+
+---
+
+<div align="center">
+
+**Built with precision and passion by Shourya Vaidhya Jain.**<br>
+**Investment Tracker — Terminal-grade portfolio intelligence for the modern investor.**
+
+</div>

@@ -1,0 +1,268 @@
+/* Dense horizontal stat strip — Bloomberg style */
+.summary-cards {
+    display: flex;
+    gap: 0;
+    background: #0a0a0a;
+    border: 1px solid #1a1a1a;
+    overflow: hidden;
+}
+
+.summary-card {
+    flex: 1;
+    padding: 8px 14px;
+    border-right: 1px solid #1a1a1a;
+    min-width: 0;
+}
+.summary-card:last-child {
+    border-right: none;
+}
+
+.summary-card:last-child {
+    border-right: none;
+}
+
+.hero-card {
+    background: transparent;
+    border: none;
+}
+
+.hero-card::before {
+    display: none;
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card-icon-wrapper {
+    width: 24px;
+    height: 24px;
+    border-radius: 2px;
+    background: rgba(255, 153, 0, 0.12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrapper-green {
+    background: rgba(0, 255, 65, 0.12);
+}
+
+.icon-wrapper-red {
+    background: rgba(255, 51, 51, 0.12);
+}
+
+.icon-blue {
+    color: #ff9900;
+}
+
+.icon-green {
+    color: #00ff41;
+}
+
+.icon-red {
+    color: #ff3333;
+}
+
+.card-title {
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 0.68rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.status-badge {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    padding: 2px 6px;
+    border-radius: 2px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+.up-badge {
+    background: var(--status-up-bg);
+    color: var(--status-up);
+}
+
+.down-badge {
+    background: var(--status-down-bg);
+    color: var(--status-down);
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.card-value {
+    font-size: 1.1rem;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    font-family: var(--font-mono);
+}
+
+.hero-value {
+    font-size: 1.3rem;
+    color: var(--text-primary);
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
+}
+
+.card-date {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    font-family: var(--font-mono);
+}
+
+.text-up {
+    color: var(--status-up);
+}
+
+.text-down {
+    color: var(--status-down);
+}
+
+
+/* Bloomberg Terminal — Desktop Dense */
+.summary-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.summary-card .card-title {
+    font-size: 0.6rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-family: var(--font-mono);
+    font-weight: 600;
+}
+
+.summary-card .card-value {
+    font-size: 1.1rem;
+    font-weight: 700;
+    font-family: var(--font-mono);
+    letter-spacing: -0.3px;
+}
+
+.summary-card.hero-card .card-value {
+    font-size: 1.4rem;
+    color: #ff9900;
+}
+
+.summary-card .card-icon-wrapper {
+    width: 24px;
+    height: 24px;
+    border-radius: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.summary-card .card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.summary-card .card-date {
+    font-size: 0.58rem;
+    color: #444;
+    font-family: var(--font-mono);
+}
+
+.summary-card .status-badge {
+    font-size: 0.62rem;
+    padding: 1px 4px;
+    border-radius: 0;
+    font-family: var(--font-mono);
+}
+
+/* ═══ Mobile Hero (hidden on desktop) ═══ */
+.mobile-portfolio-hero {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    /* Show mobile hero */
+    .mobile-portfolio-hero {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 16px 12px;
+        gap: 16px;
+    }
+
+    .mph-balance {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .mph-label {
+        font-size: 0.72rem;
+        color: #888;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .mph-value {
+        font-size: 2rem;
+        font-weight: 800;
+        color: var(--text-primary);
+        font-family: var(--font-mono);
+        margin: 0;
+        letter-spacing: -0.5px;
+    }
+
+    .mph-stats {
+        display: flex;
+        gap: 16px;
+    }
+
+    .mph-stat {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+    }
+
+    .mph-stat-label {
+        font-size: 0.65rem;
+        color: #666;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+    }
+
+    .mph-stat-value {
+        font-size: 0.88rem;
+        font-weight: 700;
+        font-family: var(--font-mono);
+    }
+
+    .mph-stat.up .mph-stat-value { color: var(--status-up); }
+    .mph-stat.down .mph-stat-value { color: var(--status-down); }
+
+    .mph-stat-pct {
+        font-size: 0.72rem;
+        opacity: 0.8;
+    }
+
+    /* Hide desktop summary cards on mobile */
+    .summary-cards {
+        display: none !important;
+    }
+}
